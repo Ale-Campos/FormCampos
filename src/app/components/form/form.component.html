@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input
+        [ngClass]="{
+          'is-invalid': nameControl.invalid
+          && nameControl.touched
+        }"
+        formControlName="name"
+        type="text"
+        class="form-control"
+        id="name"
+      />
+      <div class="invalid-feedback">
+        {{ nameErrorMessage }}
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        [ngClass]="{
+            'is-invalid': emailControl.invalid
+            && emailControl.touched
+        }"
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="email"
+      />
+      <div class="invalid-feedback">
+        {{emailErrorMessage}}
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        [ngClass]="{
+            'is-invalid': passwordControl.invalid
+            && passwordControl.touched
+        }"
+        formControlName="password"
+        [type]="showPassword ? 'text' : 'password'"
+        class="form-control"
+        id="password"
+      />
+      <div class="invalid-feedback">
+        {{passwordErrorMessage}}
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Password</label>
+      <input
+        [ngClass]="{
+            'is-invalid': confirmPasswordControl.invalid
+            && confirmPasswordControl.touched
+        }"
+        formControlName="confirmPassword"
+        [type]="showPassword ? 'text' : 'password'"
+        class="form-control"
+        id="confirmPassword"
+      />
+      <div class="invalid-feedback">
+        {{confirmPasswordErrorMessage}}
+      </div>
+    </div>
+    <div class="mb-3 form-check">
+      <input
+        (click)="showPassword = !showPassword"
+        type="checkbox"
+        class="form-check-input"
+        id="showPassword"
+      />
+      <label class="form-check-label" for="showPassword">Show password</label>
+    </div>
+    <button
+      [disabled]="this.userForm.invalid"
+      type="submit"
+      class="btn btn-primary"
+    >
+      Submit
+    </button>
+  </form>
+</div>
